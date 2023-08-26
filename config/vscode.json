@@ -1,0 +1,19 @@
+{
+  "workbench.startupEditor": "none",
+  "window.menuBarVisibility": "toggle",
+  "workbench.activityBar.visible": false,
+  "editor.fontFamily": "RobotoMono Nerd Font, 'Droid Sans Mono', 'monospace', monospace",
+  "editor.fontSize": 16,
+  "debug.console.fontFamily": "RobotoMono Nerd Font, 'monospace', monospace",
+  "debug.console.fontSize": 16,
+  "workbench.colorTheme": "Gruvbox Dark Hard",
+  "workbench.iconTheme": "vs-nomo-dark",
+  "git.confirmSync": false,
+  "git.autofetch": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "editor.formatOnSaveMode": "modificationsIfAvailable",
+  "editor.rulers": [120],
+  "workbench.sideBar.location": "right",
+  "editor.tabSize": 2
+}

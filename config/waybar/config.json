@@ -1,0 +1,143 @@
+{
+  "layer": "top",
+  "modules-center": ["custom/media", "clock"],
+  "modules-left": ["custom/launcher", "hyprland/workspaces", "hyprland/window"],
+  "modules-right": [
+    "pulseaudio",
+    "backlight",
+    "battery",
+    "network",
+    "custom/powermenu",
+    "tray"
+  ],
+  "mpd": {
+    "format": "<span foreground='#bb9af7'></span> {title}",
+    "format-disconnected": "",
+    "format-paused": " {title}",
+    "format-stopped": "<span foreground='#bb9af7'></span>",
+    "max-length": 25,
+    "on-click": "mpc --quiet toggle",
+    "on-click-middle": "kitty --class='ncmpcpp' ncmpcpp ",
+    "on-click-right": "mpc update; mpc ls | mpc add",
+    "on-scroll-down": "mpc --quiet next",
+    "on-scroll-up": "mpc --quiet prev",
+    "smooth-scrolling-threshold": 5,
+    "tooltip-format": "{title} - {artist} ({elapsedTime:%M:%S}/{totalTime:%H:%M:%S})"
+  },
+  "mpris": {
+    "format": "{player_icon}",
+    "format-paused": "{status_icon}",
+    "ignored-players": ["google-chrome"],
+    "interval": 1,
+    "player-icons": {
+      "default": " "
+    },
+    "status-icons": {
+      "paused": "⏸ "
+    }
+  },
+  "custom/media": {
+    "exec": "playerctl -a metadata --format '{\"text\": \"{{playerName}}: {{artist}} - {{markup_escape(title)}}\", \"tooltip\": \"{{playerName}} : {{markup_escape(title)}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F",
+    "format": "{icon}",
+    "format-icons": {
+      "Paused": " ",
+      "Playing": " "
+    },
+    "max-length": 70,
+    "on-click": "playerctl play-pause",
+    "return-type": "json"
+  },
+  "clock": {
+    "calendar": {
+      "format": {
+        "today": "<span color='#fabd2f'><b><u>{}</u></b></span>"
+      }
+    },
+    "format": "{:%a %I:%M %p %Ex}",
+    "interval": 1,
+    "tooltip": true,
+    "tooltip-format": "<tt>{calendar}</tt>"
+  },
+  "custom/launcher": {
+    "format": " ",
+    "on-click": "pkill rofi || rofi -show drun",
+    "on-click-right": "random-wallpaper",
+    "tooltip": false
+  },
+  "hyprland/workspaces": {
+    "format": "{icon}",
+    "format-icons": {
+      "active": "",
+      "default": ""
+    }
+  },
+  "hyprland/window": {
+    "format": "{}",
+    "max-length": 50,
+    "rewrite": {},
+    "separate-outputs": true
+  },
+  "pulseaudio": {
+    "format": "{icon} {volume}%",
+    "format-icons": {
+      "default": ["", "", ""]
+    },
+    "format-muted": "󰖁 Muted",
+    "on-click": "pamixer -t",
+    "scroll-step": 1,
+    "tooltip": false
+  },
+  "backlight": {
+    "format": "{icon} {percent}%",
+    "format-icons": ["", ""],
+    "tooltip": false
+  },
+  "battery": {
+    "format": "{icon}  {capacity}%",
+    "format-icons": ["", "", "", "", ""],
+    "interval": 10,
+    "max-length": 25,
+    "states": {
+      "critical": 15,
+      "warning": 30
+    }
+  },
+  "cpu": {
+    "format": "󰍛 {usage}%",
+    "interval": 1
+  },
+  "memory": {
+    "format": "󰻠 {percentage}%",
+    "interval": 1,
+    "states": {
+      "warning": 85
+    }
+  },
+  "bluetooth": {
+    "format-connected": " {num_connections} connected",
+    "format-disabled": "",
+    "format-off": "",
+    "tooltip-format": "{controller_alias}\t{controller_address}",
+    "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
+    "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}"
+  },
+  "network": {
+    "format-disconnected": "󰯡 Disconnected",
+    "format-ethernet": "󰒢 Connected!",
+    "format-linked": "󰖪 {essid} (No IP)",
+    "format-wifi": "󰖩 {essid}",
+    "interval": 5,
+    "on-click": "nm-connection-editor",
+    "tooltip": false
+  },
+  "custom/powermenu": {
+    "format": " ",
+    "on-click": "pkill rofi || power-menu",
+    "tooltip": false
+  },
+  "tray": {
+    "icon-size": 15,
+    "spacing": 5
+  },
+  "position": "top"
+}
