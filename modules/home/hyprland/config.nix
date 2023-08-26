@@ -117,8 +117,7 @@
     bind = $mainMod, R, exec, rofi -show drun
 
     # Functional keybinds
-    bind = , Print, exec, grim -g "$(slurp)" - | wl-copy
-    bind = SHIFT, Print, exec, grim -g "$(slurp)"
+    bind = , Print, exec, screenshot
 
     bind =,XF86AudioMicMute,exec,pamixer --default-source -t
     bind =,XF86MonBrightnessDown,exec,brightnessctl set 10%-

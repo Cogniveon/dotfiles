@@ -19,8 +19,34 @@ with lib; let
       --transition-pos 0.00001,0.99999 \
       --transition-step 90
   '';
+  wallpaper-menu = pkgs.writeShellScriptBin "wallpaper-menu" ''
+    #!/usr/bin/env bash
+    
+    WALLPAPER_DIR="/home/alqaholic/dotfiles/config/wallpapers/"
+
+    if [ $1 == "--script" ]
+    then
+      if [ -n "$2" ]
+      then
+        swww img $WALLPAPER_DIR$2 \
+          --transition-type grow \
+          --transition-pos 0.00001,0.99999 \
+          --transition-step 90
+        exit 0
+      else
+        echo -e "\0prompt\x1fSelect a wallpaper"
+        ls -1 $WALLPAPER_DIR
+      fi
+    fi
+
+    rofi \
+      -show w \
+      -modi w:'wallpaper-menu --script' \
+      -font "Roboto Mono NF 16"
+  '';
   power-menu = pkgs.writeShellScriptBin "power-menu" ''
     #!/usr/bin/env bash
+
     rofi \
       -show p \
       -modi p:'rofi-power-menu --symbols-font "RobotoMono Nerd Font Mono" --choices shutdown/reboot/hibernate/suspend' \
@@ -32,6 +58,7 @@ in {
   home.packages = with pkgs; [
     screenshot
     random-wallpaper
+    wallpaper-menu
     power-menu
 
     
