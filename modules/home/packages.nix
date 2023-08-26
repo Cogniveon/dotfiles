@@ -9,7 +9,8 @@
     google-chrome
     vscode
     discord
-    spotify
+    # Use spicetify
+    # spotify
     transmission-gtk
     gnome.nautilus
     gnome.eog

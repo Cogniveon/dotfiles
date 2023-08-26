@@ -12,9 +12,12 @@ with lib; let
   random-wallpaper = pkgs.writeShellScriptBin "random-wallpaper" ''
     #!/usr/bin/env bash
     
-    WALLPAPER_DIR="/home/alqaholic/dotfiles/modules/home/wallpapers/"
+    WALLPAPER_DIR="/home/alqaholic/dotfiles/config/wallpapers/"
 
-    swww img $WALLPAPER_DIR$(ls $WALLPAPER_DIR |sort -R |tail -1)
+    swww img $WALLPAPER_DIR$(ls $WALLPAPER_DIR |sort -R |tail -1) \
+      --transition-type grow \
+      --transition-pos 0.00001,0.99999 \
+      --transition-step 90
   '';
   power-menu = pkgs.writeShellScriptBin "power-menu" ''
     #!/usr/bin/env bash
