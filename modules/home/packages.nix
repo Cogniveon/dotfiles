@@ -58,7 +58,6 @@
     deno
     yarn
 
-    clang
     gcc
     bear
     gdb

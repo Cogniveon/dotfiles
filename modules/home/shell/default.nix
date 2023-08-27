@@ -30,8 +30,9 @@ in {
   home.sessionVariables.STARSHIP_CACHE = "${config.xdg.cacheHome}/starship";
   programs = {
     nix-index.enable = false;
-
     exa.enable = true;
+    bat.enable = true;
+    bat.config.theme = "gruvbox-dark";
 
     # zoxide = {
     #   enable = true;
@@ -120,8 +121,8 @@ in {
         zmodload zsh/complist
         compinit
         _comp_options+=(globdots)
-        bindkey -M menuselect 'h' vi-backward-char
         bindkey '^H' backward-kill-word
+        bindkey -M menuselect 'h' vi-backward-char
         bindkey -M menuselect 'k' vi-up-line-or-history
         bindkey -M menuselect 'l' vi-forward-char
         bindkey -M menuselect 'j' vi-down-line-or-history
@@ -144,8 +145,8 @@ in {
         fi
       '';
       history = {
-        save = 100;
-        size = 100;
+        save = 500;
+        size = 500;
         expireDuplicatesFirst = true;
         ignoreDups = true;
         ignoreSpace = true;
@@ -153,8 +154,8 @@ in {
 
       shellAliases = with pkgs;
       with lib; {
-        rebuild = "doas nix-store --verify; pushd ~/dotfiles && doas nixos-rebuild switch --flake .# && notify-send \"Done\"&& bat cache --build; popd";
-        cleanup = "doas nix-collect-garbage --delete-older-than 7d";
+        rebuild = "sudo nix-store --verify; pushd ~/dotfiles && sudo nixos-rebuild switch --flake .# && notify-send \"Done\"&& bat cache --build; popd";
+        cleanup = "sudo nix-collect-garbage --delete-older-than 7d";
         bloat = "nix path-info -Sh /run/current-system";
         ytmp3 = ''
           ${getExe yt-dlp} -x --continue --add-metadata --embed-thumbnail --audio-format mp3 --audio-quality 0 --metadata-from-title="%(artist)s - %(title)s" --prefer-ffmpeg -o "%(title)s.%(ext)s"'';
@@ -175,7 +176,6 @@ in {
         lt = "${getExe exa} -lah --tree";
         tree = "${getExe exa} --tree";
         httpServer = "${getExe python3} -m http.server";
-        burn = "pkill -9";
         diff = "diff --color=auto";
         ".." = "cd ..";
         "..." = "cd ../../";
