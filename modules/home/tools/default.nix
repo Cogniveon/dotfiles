@@ -1,4 +1,9 @@
-{ pkgs, lib, config, ... }: let
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}: let
   browser = ["google-chrome.desktop"];
 
   associations = {
@@ -44,7 +49,7 @@ in {
       enable = true;
       nix-direnv.enable = true;
     };
-  
+
     bat = {
       enable = true;
       config = {

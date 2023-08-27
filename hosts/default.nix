@@ -1,4 +1,8 @@
-{ nixpkgs, self, ... }: let
+{
+  nixpkgs,
+  self,
+  ...
+}: let
   inherit (self) inputs;
   bootloader = ../modules/core/bootloader.nix;
   core = ../modules/core;
@@ -14,7 +18,7 @@ in {
     system = "x86_64-linux";
 
     modules = [
-      { networking.hostName = "rk-acerlap"; }
+      {networking.hostName = "rk-acerlap";}
       ./rk-acerlap/hardware-configuration.nix
       bootloader
       nvidia

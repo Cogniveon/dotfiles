@@ -1,7 +1,15 @@
-{ inputs, pkgs, config, lib, self, hostname, ... }: {
+{
+  inputs,
+  pkgs,
+  config,
+  lib,
+  self,
+  hostname,
+  ...
+}: {
   imports = [
     inputs.spicetify-nix.homeManagerModule
-    
+
     ./packages.nix
     ./gtk
     ./git

@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }: {
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
   wayland.windowManager.hyprland.extraConfig = ''
     # See https://wiki.hyprland.org/Configuring/Monitors/
     monitor=,preferred,auto,1
@@ -109,11 +114,11 @@
 
     # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
     bind = $mainMod, return, exec, alacritty
-    bind = $mainMod, Q, killactive, 
+    bind = $mainMod, Q, killactive,
     bind = $mainMod SHIFT, Q, exec, power-menu
-    bind = $mainMod SHIFT, M, exit, 
+    bind = $mainMod SHIFT, M, exit,
     bind = $mainMod, E, exec, nautilus
-    bind = $mainMod, V, togglefloating, 
+    bind = $mainMod, V, togglefloating,
     bind = $mainMod, R, exec, rofi -show drun
 
     # Functional keybinds

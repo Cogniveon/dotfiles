@@ -1,4 +1,10 @@
-{ config, self, lib, pkgs, ... }: let
+{
+  config,
+  self,
+  lib,
+  pkgs,
+  ...
+}: let
   volume = let
     pamixer = lib.getExe pkgs.pamixer;
     notify-send = pkgs.libnotify + "/bin/notify-send";
@@ -36,8 +42,8 @@ in {
     };
     settings = {
       global = {
-        frame_color = "#83a59895"; 
-        separator_color = "#83a598"; 
+        frame_color = "#83a59895";
+        separator_color = "#83a598";
         width = 480;
         height = 280;
         offset = "0x15";

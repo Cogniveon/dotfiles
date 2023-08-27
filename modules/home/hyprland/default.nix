@@ -1,4 +1,10 @@
-{ pkgs, lib, config, inputs, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  inputs,
+  ...
+}:
 with lib; let
   mkService = lib.recursiveUpdate {
     Unit.PartOf = ["graphical-session.target"];
@@ -11,7 +17,7 @@ with lib; let
   '';
   random-wallpaper = pkgs.writeShellScriptBin "random-wallpaper" ''
     #!/usr/bin/env bash
-    
+
     WALLPAPER_DIR="/home/alqaholic/dotfiles/config/wallpapers/"
 
     swww img $WALLPAPER_DIR$(ls $WALLPAPER_DIR |sort -R |tail -1) \
@@ -21,28 +27,34 @@ with lib; let
   '';
   wallpaper-menu = pkgs.writeShellScriptBin "wallpaper-menu" ''
     #!/usr/bin/env bash
-    
-    WALLPAPER_DIR="/home/alqaholic/dotfiles/config/wallpapers/"
 
-    if [ $1 == "--script" ]
+    WALLPAPER_DIR="/home/alqaholic/dotfiles/config/wallpapers/"
+    LIST=($(ls $WALLPAPER_DIR))
+    CURRENT_WALLPAPER=$(swww query | awk '{ print $8 }')
+
+    if [ "$@" ]
     then
-      if [ -n "$2" ]
-      then
-        swww img $WALLPAPER_DIR$2 \
-          --transition-type grow \
-          --transition-pos 0.00001,0.99999 \
-          --transition-step 90
-        exit 0
-      else
-        echo -e "\0prompt\x1fSelect a wallpaper"
-        ls -1 $WALLPAPER_DIR
-      fi
+      swww img $WALLPAPER_DIR$1 \
+              --transition-type grow \
+              --transition-pos 0.00001,0.99999 \
+              --transition-step 90
+      CURRENT_WALLPAPER="$WALLPAPER_DIR$1"
     fi
 
-    rofi \
-      -show w \
-      -modi w:'wallpaper-menu --script' \
-      -font "Roboto Mono NF 16"
+    echo -en "\x00prompt\x1fSelect a wallpaper\n"
+    echo -en "\0keep-selection\x1ftrue\n"
+    echo -en "\0message\x1fPress <b>enter</b> to set wallpaper and <b>esc</b> to exit\n"
+
+    index=0
+    for value in "''${LIST[@]}"
+    do
+      if [ z"$WALLPAPER_DIR$value" = z"$CURRENT_WALLPAPER" ]
+      then
+        echo -en "\0active\x1f$index\n"
+      fi
+      echo -ne "$value\0info\x1f$index\n"
+      ((index++))
+    done
   '';
   power-menu = pkgs.writeShellScriptBin "power-menu" ''
     #!/usr/bin/env bash
@@ -54,14 +66,13 @@ with lib; let
       -theme-str 'listview {lines: 4;}'
   '';
 in {
-  imports = [ ./config.nix ];
+  imports = [./config.nix];
   home.packages = with pkgs; [
     screenshot
     random-wallpaper
     wallpaper-menu
     power-menu
 
-    
     hyprpaper
     swww
     eww-wayland

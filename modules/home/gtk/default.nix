@@ -1,5 +1,11 @@
-{ self, pkgs, lib, config, inputs, ... }: {
-
+{
+  self,
+  pkgs,
+  lib,
+  config,
+  inputs,
+  ...
+}: {
   gtk = {
     enable = true;
     iconTheme = {

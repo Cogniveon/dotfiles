@@ -1,4 +1,8 @@
-{ config, pkgs, ... }: {
+{
+  config,
+  pkgs,
+  ...
+}: {
   home.packages = with pkgs; [mpc_cli playerctl pavucontrol pulsemixer imv];
   programs = {
     mpv = {

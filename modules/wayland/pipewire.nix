@@ -1,4 +1,8 @@
-{ config, pkgs, ... }: {
+{
+  config,
+  pkgs,
+  ...
+}: {
   services.pipewire = {
     enable = true;
     alsa = {
@@ -9,7 +13,7 @@
     pulse.enable = true;
     jack.enable = true;
   };
-  
+
   environment.etc."wireplumber/bluetooth.lua.d/51-bluez-config.lua".text = ''
     bluez_monitor.properties = {
       ["bluez5.enable-sbc-xq"] = true,

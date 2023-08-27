@@ -20,17 +20,19 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs:
-  let
-    pkgs = import nixpkgs { inherit system; };
+  outputs = {
+    self,
+    nixpkgs,
+    home-manager,
+    ...
+  } @ inputs: let
+    pkgs = import nixpkgs {inherit system;};
     system = "x86_64-linux";
-  in
-  {
+  in {
     # NixOS configuration entrypoint
     # Available through "sudo nixos-rebuild switch --flake '.#hostname'"
     nixosConfigurations = import ./hosts inputs;
 
-    
     # Home Manager configuration entrypoint
     # Available through "home-manager switch --flake '.#username'"
     homeConfigurations.alqaholic = home-manager.lib.homeManagerConfiguration {
@@ -39,11 +41,11 @@
         config.allowUnfree = true;
       };
       # Pass flake inputs to our config
-      extraSpecialArgs = { inherit inputs; };
+      extraSpecialArgs = {inherit inputs;};
       # > home-manager configuration file
-      modules = [ ./modules/home ];
+      modules = [./modules/home];
     };
-    
+
     formatter.${system} = pkgs.alejandra;
   };
 }

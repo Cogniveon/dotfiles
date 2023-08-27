@@ -53,7 +53,7 @@
     rustup
     nodejs_latest
     deno
-    nodePackages.yarn
+    yarn
     lua
     lua-language-server
   ];

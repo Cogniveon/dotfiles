@@ -1,4 +1,9 @@
-{ config, pkgs, lib, ... }: {
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: {
   services = {
     dbus = {
       packages = with pkgs; [dconf gcr udisks2];
@@ -12,10 +17,12 @@
     udisks2.enable = true;
   };
 
-  swapDevices = [{
-    device = "/var/lib/swapfile";
-    size = 16*1024;
-  }];
+  swapDevices = [
+    {
+      device = "/var/lib/swapfile";
+      size = 16 * 1024;
+    }
+  ];
 
   environment.systemPackages = with pkgs; [
     git

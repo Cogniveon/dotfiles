@@ -2,14 +2,7 @@
   "layer": "top",
   "modules-center": ["custom/media", "clock"],
   "modules-left": ["custom/launcher", "hyprland/workspaces", "hyprland/window"],
-  "modules-right": [
-    "pulseaudio",
-    "backlight",
-    "battery",
-    "network",
-    "custom/powermenu",
-    "tray"
-  ],
+  "modules-right": ["tray", "pulseaudio", "backlight", "battery", "network", "custom/powermenu"],
   "mpd": {
     "format": "<span foreground='#bb9af7'></span> {title}",
     "format-disconnected": "",
@@ -61,7 +54,9 @@
   "custom/launcher": {
     "format": " ",
     "on-click": "pkill rofi || rofi -show drun",
-    "on-click-right": "random-wallpaper",
+    "on-click-right": "rofi -show w -modi 'w:wallpaper-menu' -font 'Roboto Mono NF 16'",
+    "on-scroll-up": "random-wallpaper",
+    "on-scroll-down": "random-wallpaper",
     "tooltip": false
   },
   "hyprland/workspaces": {

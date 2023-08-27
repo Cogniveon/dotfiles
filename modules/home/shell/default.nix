@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }: let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
   apply-hm-env = pkgs.writeShellScript "apply-hm-env" ''
     ${lib.optionalString (config.home.sessionPath != []) ''
       export PATH=${builtins.concatStringsSep ":" config.home.sessionPath}:$PATH
@@ -10,7 +15,7 @@
     ${config.home.sessionVariablesExtra}
     exec "$@"
   '';
-  
+
   # runs processes as systemd transient services
   run-as-service = pkgs.writeShellScriptBin "run-as-service" ''
     exec ${pkgs.systemd}/bin/systemd-run \
@@ -25,7 +30,7 @@ in {
   home.sessionVariables.STARSHIP_CACHE = "${config.xdg.cacheHome}/starship";
   programs = {
     nix-index.enable = false;
-    
+
     exa.enable = true;
 
     # zoxide = {
@@ -146,7 +151,8 @@ in {
         ignoreSpace = true;
       };
 
-      shellAliases = with pkgs; with lib; {
+      shellAliases = with pkgs;
+      with lib; {
         rebuild = "doas nix-store --verify; pushd ~/dotfiles && doas nixos-rebuild switch --flake .# && notify-send \"Done\"&& bat cache --build; popd";
         cleanup = "doas nix-collect-garbage --delete-older-than 7d";
         bloat = "nix path-info -Sh /run/current-system";

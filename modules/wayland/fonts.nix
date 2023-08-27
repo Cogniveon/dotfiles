@@ -1,6 +1,9 @@
-{ config, lib, pkgs, ... }:
-
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
   environment.systemPackages = with pkgs; [
     twemoji-color-font
   ];
@@ -13,7 +16,7 @@
       lato
       lexend
       roboto-mono
-      (nerdfonts.override { fonts = [ "RobotoMono" ]; })
+      (nerdfonts.override {fonts = ["RobotoMono"];})
       twemoji-color-font
       fira-code
       fira-code-symbols
@@ -34,5 +37,4 @@
       };
     };
   };
-
 }

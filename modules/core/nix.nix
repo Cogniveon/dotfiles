@@ -1,4 +1,10 @@
-{ config, pkgs, lib, inputs, ... }: {
+{
+  config,
+  pkgs,
+  lib,
+  inputs,
+  ...
+}: {
   environment = {
     # set channels (backwards compatibility)
     etc = {
@@ -49,7 +55,6 @@
     # Make builds run with low priority so my system stays responsive
     daemonCPUSchedPolicy = "idle";
     daemonIOSchedClass = "idle";
-
 
     # Free up to 1GiB whenever there is less than 100MiB left.
     extraOptions = ''

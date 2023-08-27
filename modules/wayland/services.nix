@@ -1,10 +1,14 @@
-{ config, pkgs, ... }: {
+{
+  config,
+  pkgs,
+  ...
+}: {
   services = {
     xserver = {
       enable = true;
       displayManager.gdm.enable = true;
       displayManager.gdm.wayland = true;
-      displayManager.sessionPackages = [ pkgs.hyprland ];
+      displayManager.sessionPackages = [pkgs.hyprland];
       libinput.enable = true;
     };
 
