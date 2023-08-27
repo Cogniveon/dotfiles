@@ -48,13 +48,28 @@
 
     # Coding stuff
     python3
-    gcc
-    go
-    rustup
+    python311Packages.requests
+    python311Packages.black
+    python311Packages.setuptools
+    python311Packages.pylint
+    poetry
+
     nodejs_latest
     deno
     yarn
+
+    clang
+    gcc
+    bear
+    gdb
+    cmake
+    llvmPackages.libcxx
+
     lua
     lua-language-server
+    go
+    rustup
   ];
+
+  env.PATH = ["$(${pkgs.yarn}/bin/yarn global bin)"];
 }
