@@ -71,5 +71,5 @@
     rustup
   ];
 
-  env.PATH = ["$(${pkgs.yarn}/bin/yarn global bin)"];
+  home.sessionPath = ["$(${pkgs.yarn}/bin/yarn global bin)"];
 }
