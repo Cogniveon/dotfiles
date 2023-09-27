@@ -45,6 +45,7 @@
     jq
     glib
     dconf
+    steam-run
 
     # Coding stuff
     python3
@@ -66,6 +67,7 @@
 
     lua
     lua-language-server
+    pkg-config
     go
     rustup
   ];

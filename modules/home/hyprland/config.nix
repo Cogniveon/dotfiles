@@ -28,18 +28,17 @@
     # For all categories, see https://wiki.hyprland.org/Configuring/Variables/
     input {
         kb_layout = us
-        kb_variant =
-        kb_model =
-        kb_options =
-        kb_rules =
 
         follow_mouse = 1
+        numlock_by_default = yes
 
         touchpad {
             natural_scroll = yes
+            tap-and-drag = yes
         }
 
-        sensitivity = -0.1 # -1.0 - 1.0, 0 means no modification.
+        # -1.0 - 1.0, 0 means no modification.
+        sensitivity = -0.1
     }
 
     general {
@@ -120,6 +119,7 @@
     bind = $mainMod, E, exec, nautilus
     bind = $mainMod, V, togglefloating,
     bind = $mainMod, R, exec, rofi -show drun
+    bind = $mainMod, SPACE, exec, rofi -show drun
 
     # Functional keybinds
     bind = , Print, exec, screenshot
