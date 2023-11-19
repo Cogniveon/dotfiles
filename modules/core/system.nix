@@ -33,12 +33,14 @@
     curl
     glib
     util-linux
+    exfat
     glibc
     icu
     libunwind
     libuuid
     zlib
     libsecret
+    pkexec
     # graphical
     freetype
     libglvnd
